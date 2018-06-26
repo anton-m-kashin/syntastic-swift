@@ -8,7 +8,7 @@ if !exists('g:syntastic_swift_swift_executable')
 endif
 
 if !exists('g:syntastic_swift_swift_arguments')
-  let g:syntastic_swift_swift_arguments = expand('%:p')
+  let g:syntastic_swift_swift_arguments = shellescape(expand('%:p'))
 endif
 let s:save_cpo = &cpo
 
@@ -34,7 +34,7 @@ function! SyntaxCheckers_swift_swift_GetLocList() dict
 
   let env = {
         \ 'SCRIPT_INPUT_FILE_COUNT': 1,
-        \ 'SCRIPT_INPUT_FILE_0': expand('%:p'),
+        \ 'SCRIPT_INPUT_FILE_0': shellescape(expand('%:p'))
         \ }
 
   return SyntasticMake({
